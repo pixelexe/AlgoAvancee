@@ -10,10 +10,6 @@ import org.junit.jupiter.api.Test;
  */
 class MyArrayListTest
 {
-    /**
-     * Rigorous Test :-)
-     * @throws MyOutOfBoundsException 
-     */
     @Test
     void add_toString_get_Test() throws IndexOutOfBoundsException, MyOutOfBoundsException
     {
@@ -100,5 +96,5 @@ class MyArrayListTest
 
 
     @Test 
-    void 
+    void remove
 }
