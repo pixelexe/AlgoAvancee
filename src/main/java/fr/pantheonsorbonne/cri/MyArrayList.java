@@ -11,7 +11,7 @@ public class MyArrayList implements Iterable<String>{
         this.data = new String[1];
         this.flag = 0;
     }
-    
+
     private void ensureCapacity(int n) {
         if (n <= data.length) {
             return;
@@ -76,8 +76,8 @@ public class MyArrayList implements Iterable<String>{
     }
 
     public int indexOf(String value){
-        for (int i = 0; i<this.data.length ; i++){
-            if (this.data[i].equals(value)){
+        for (int i = 0; i<this.flag ; i++){
+            if (value.equals(this.data[i])){
                 return i;
             }
         }

@@ -149,4 +149,46 @@ class MyArrayListTest
             assertEquals(Integer.toString(i), ite.next());
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @Test 
+    public void indexOfTest(){
+        MyArrayList data = new MyArrayList();
+        assertEquals(-1, data.indexOf("0"));
+        for (int i = 0 ; i<11; i++){
+            data.add(Integer.toString(i));
+        }
+
+        assertEquals(3, data.indexOf("3"));
+        assertEquals(0, data.indexOf("0"));
+        assertEquals(10, data.indexOf("10"));
+        assertEquals(-1, data.indexOf("hello"));
+        
+    }
 }
