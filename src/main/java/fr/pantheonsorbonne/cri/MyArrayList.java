@@ -3,7 +3,7 @@ package fr.pantheonsorbonne.cri;
 import java.util.Arrays;
 import java.util.Iterator;
 
-public class MyArrayList implements Iterable{
+public class MyArrayList implements Iterable<String>{
     int flag;
     String[] data;
 
@@ -31,7 +31,10 @@ public class MyArrayList implements Iterable{
         return true;
     }
 
-    public void add(int index, String element){
+    public void add(int index, String element) throws MyOutOfBoundsException{
+        if (index>=flag || index<0){
+            throw new MyOutOfBoundsException();
+        }
         this.ensureCapacity(flag+1);
         for (int i = this.flag; i>index ; i--){
             this.data[i] = this.data[i-1];
@@ -95,7 +98,10 @@ public class MyArrayList implements Iterable{
     }
 
 
-    public String set(int placement, String element){
+    public String set(int placement, String element) throws MyOutOfBoundsException{
+        if (placement>=flag || placement<0){
+            throw new MyOutOfBoundsException();
+        }
         String retrieve = this.data[placement];
         this.data[placement] = element;
         return retrieve; 
@@ -106,14 +112,8 @@ public class MyArrayList implements Iterable{
     }
 
     @Override
-    public Iterator iterator() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'iterator'");
+    public Iterator<String> iterator() {
+        return new MyIterator(this.data);
     }
-
-    // public Iterator<String> iterator(){
-    //     return new Iterator<String>(this.data);
-    // }
-
 }
 
