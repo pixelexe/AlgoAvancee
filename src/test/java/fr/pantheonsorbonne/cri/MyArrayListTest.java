@@ -87,24 +87,6 @@ class MyArrayListTest
         
     }
 
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @Test 
     void removeTest() throws MyOutOfBoundsException{
         MyArrayList data = new MyArrayList();
