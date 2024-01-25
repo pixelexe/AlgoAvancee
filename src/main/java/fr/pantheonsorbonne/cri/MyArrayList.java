@@ -14,7 +14,8 @@ public class MyArrayList{
     private void ensureCapacity(int n) {
         if (n <= data.length) {
             return;
-        } else {//
+        } 
+        else {//
             String[] tab2 = new String[data.length * 2];
             for (int i = 0; i < data.length; i++) {
                 tab2[i] = data[i];
@@ -38,9 +39,9 @@ public class MyArrayList{
 
     }
 
-    public String get(int i) throws IndexOutOfBoundsException{
+    public String get(int i) throws MyOutOfBoundsException{
         if (i>=flag){
-            throw new IndexOutOfBoundsException();
+            throw new MyOutOfBoundsException();
         }
         return data[i];
     }
@@ -104,19 +105,5 @@ public class MyArrayList{
     //     return new Iterator<String>(this.data);
     // }
 
-
-
-    public static void main(String[] args) {
-        MyArrayList liste = new MyArrayList();
-        System.out.println(liste.toString().equals("[]"));
-        liste.add("a");
-        liste.add("b");
-        liste.add("c");
-        liste.add("d");
-        liste.add("e");
-        liste.add("f");
-        System.out.println(liste.get(3) == "d");
-        System.out.println(liste.toString().equals("[a, b, c, d, e, f, ]"));
-    }
 }
 
