@@ -51,6 +51,11 @@ class MyArrayListTest
         assertThrows(MyOutOfBoundsException.class,()->liste.get(7));
         assertThrows(MyOutOfBoundsException.class,()->liste.get(-1));
         assertThrows(MyOutOfBoundsException.class,()->liste.get(8));
+        String data7[] = {"a","b","c","d","e","f","",null};
+        liste.add("");
+        assertArrayEquals(liste.data, data7);
+        assertEquals("[a, b, c, d, e, f, ]", liste.toString());
+        assertEquals("", liste.get(6));
     }
 
     @Test
@@ -58,6 +63,8 @@ class MyArrayListTest
     {
         MyArrayList liste = new MyArrayList();
         assertEquals(true, liste.isEmpty());
+        liste.add("");
+        assertEquals(false, liste.isEmpty());
         liste.add("test");
         assertEquals(false, liste.isEmpty());
     }
@@ -161,6 +168,7 @@ class MyArrayListTest
         assertEquals(false, liste.contains("a,b"));
         assertEquals(false, liste.contains("e"));
         assertEquals(false, liste.contains("-1"));
+        assertEquals(false, liste.contains(""));
         
     }
 
