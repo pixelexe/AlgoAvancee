@@ -62,9 +62,27 @@ class MyArrayListTest
     }
 
     @Test 
-    void addWithIndex(){
+    void addWithIndex() throws MyOutOfBoundsException{
         MyArrayList liste = new MyArrayList();
         liste.add(0,"a");
+        String [] data1 = {"a"};
+        assertArrayEquals(data1,liste.data);
+        assertEquals(liste.flag, 1);
+        liste.add(0,"b");
+        String [] data2 = {"b","a"};
+        assertEquals(liste.flag, 2);
+        assertEquals(data2.length, liste.data.length);
+        assertEquals(liste.data[0], "b");
+        assertEquals(liste.data[1], "a");
+        assertEquals(data2.length, liste.data.length);
+        assertArrayEquals(data2,liste.data);
+        liste.add(1, "c");
+        String [] data3 = {"b","c","a",null};
+        assertEquals(liste.data[0], "b");
+        assertEquals(liste.data[1], "c");
+        assertEquals(liste.data[2], "a");
+        assertEquals(data3.length, liste.data.length);
+        assertArrayEquals(data3, liste.data);
         
     }
 
@@ -93,8 +111,8 @@ class MyArrayListTest
 
 
 
+/* */
 
-
-    @Test 
-    void remove
+    // @Test 
+    // void remove
 }

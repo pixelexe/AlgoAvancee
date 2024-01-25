@@ -32,13 +32,16 @@ public class MyArrayList implements Iterable<String>{
     }
 
     public void add(int index, String element) throws MyOutOfBoundsException{
+        if (flag != 0){
         if (index>=flag || index<0){
             throw new MyOutOfBoundsException();
         }
+    }
         this.ensureCapacity(flag+1);
         for (int i = this.flag; i>index ; i--){
             this.data[i] = this.data[i-1];
         }
+        flag++;
         this.data[index] = element;
 
     }
