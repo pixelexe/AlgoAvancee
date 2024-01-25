@@ -56,9 +56,19 @@ class MyArrayListTest
         assertThrows(MyOutOfBoundsException.class,()->liste.get(8));
     }
 
-    void addSpecificPosition()
+    @Test
+    void isEmptyTest()
     {
+        MyArrayList liste = new MyArrayList();
+        assertEquals(true, liste.isEmpty());
+        liste.add("test");
+        assertEquals(false, liste.isEmpty());
+    }
 
+    @Test 
+    void addWithIndex(){
+        MyArrayList liste = new MyArrayList();
+        liste.add(null)
     }
 
     
