@@ -1,8 +1,9 @@
 package fr.pantheonsorbonne.cri;
 
 import java.util.Arrays;
+import java.util.Iterator;
 
-public class MyArrayList{
+public class MyArrayList implements Iterable{
     int flag;
     String[] data;
 
@@ -40,7 +41,7 @@ public class MyArrayList{
     }
 
     public String get(int i) throws MyOutOfBoundsException{
-        if (i>=flag){
+        if (i>=flag || i<0){
             throw new MyOutOfBoundsException();
         }
         return data[i];
@@ -81,7 +82,10 @@ public class MyArrayList{
         return (Arrays.equals(this.data, new String[1]));
     }
 
-    public String remove(int index){
+    public String remove(int index) throws MyOutOfBoundsException{
+        if (index>=flag || index<0){
+            throw new MyOutOfBoundsException();
+        }
         String retrieve = this.data[index];
         for (int i = index ; i<this.data.length-1; i++){
             this.data[i] = this.data[i+1];
@@ -99,6 +103,12 @@ public class MyArrayList{
 
     public int size(){
         return flag;
+    }
+
+    @Override
+    public Iterator iterator() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'iterator'");
     }
 
     // public Iterator<String> iterator(){
