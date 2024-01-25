@@ -20,7 +20,7 @@ class MyArrayListTest
         MyArrayList liste = new MyArrayList();
         assertEquals("[]", liste.toString());
         liste.add("a");
-        String data1[] = {"a",};
+        String data1[] = {"a"};
         assertEquals(liste.data.length, data1.length);
         assertArrayEquals(liste.data, data1);
         assertEquals("[a]", liste.toString());
@@ -68,8 +68,36 @@ class MyArrayListTest
     @Test 
     void addWithIndex(){
         MyArrayList liste = new MyArrayList();
-        liste.add(null)
+        liste.add("null");
     }
 
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @Test 
+    void 
 }
