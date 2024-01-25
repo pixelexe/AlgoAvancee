@@ -2,6 +2,7 @@ package fr.pantheonsorbonne.cri;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
@@ -17,7 +18,7 @@ public class MyArrayListTest
      * Rigorous Test :-)
      */
     @Test
-    public void shouldAnswerWithTrue()
+    public void shouldAnswerWithTrue() throws IndexOutOfBoundsException
     {
         MyArrayList liste = new MyArrayList();
         assertEquals(liste.toString(), "[]");
@@ -46,9 +47,9 @@ public class MyArrayListTest
         assertEquals(liste.get(3),"d");
         assertEquals(liste.get(4),"e");
         assertEquals(liste.get(5),"f");
-        assertEquals(liste.get(6),new IndexOutOfBoundsException());
-        assertEquals(liste.get(7),new IndexOutOfBoundsException());
-        System.out.println(liste.toString().equals("[a, b, c, d, e, f, ]"));
+        assertThrows(IndexOutOfBoundsException.class,()->liste.get(6));
+        assertThrows(IndexOutOfBoundsException.class,()->liste.get(7));
+        assertEquals(liste.toString(), "[a, b, c, d, e, f]");;
     }
 
     
