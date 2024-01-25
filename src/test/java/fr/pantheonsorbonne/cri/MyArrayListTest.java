@@ -2,12 +2,13 @@ package fr.pantheonsorbonne.cri;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.util.Iterator;
+
 import org.junit.jupiter.api.Test;
 
-/**
- * Unit test for simple App.
- */
 class MyArrayListTest
 {
     @Test
@@ -94,6 +95,72 @@ class MyArrayListTest
 
 
 
+
+
+
+
+
+
     @Test 
-    void remove
+    void removeTest() throws MyOutOfBoundsException{
+        MyArrayList data = new MyArrayList();
+        for (int i = 1 ; i<12 ; i++){
+            data.add(Integer.toString(i));
+        }
+
+        assertEquals("6", data.remove(5));
+        assertEquals("11", data.get(9));
+
+        assertThrows(MyOutOfBoundsException.class, ()->data.remove(10));
+        assertThrows(MyOutOfBoundsException.class, ()->data.remove(100));
+        assertThrows(MyOutOfBoundsException.class, ()->data.remove(-1));
+    }
+
+    @Test 
+    void setTest() throws MyOutOfBoundsException{
+        MyArrayList data = new MyArrayList();
+        for (int i = 1 ; i<11; i++){
+            data.add(Integer.toString(i));
+        }
+
+        assertEquals("6", data.set(5, "hello world"));
+
+        assertEquals("5", data.get(4));
+        assertEquals("hello world", data.get(5));
+        assertEquals("7", data.get(6));
+
+        assertThrows(MyOutOfBoundsException.class, ()->data.set(-1, "a"));
+        assertThrows(MyOutOfBoundsException.class, ()->data.set(10, "a"));
+        assertThrows(MyOutOfBoundsException.class, ()->data.set(100, "a"));
+    }
+
+
+    @Test
+    public void sizeTest() throws MyOutOfBoundsException{
+        MyArrayList data = new MyArrayList();
+        assertEquals(0, data.size());
+        for (int i = 1 ; i<11; i++){
+            data.add(Integer.toString(i));
+        }
+
+        assertEquals(10, data.size());
+
+        data.remove(4);
+        assertEquals(9, data.size());
+    }
+
+    @Test
+    public void iteratorTest(){
+        MyArrayList data = new MyArrayList();
+        Iterator<String> ite = data.iterator();
+        assertFalse(ite.hasNext());
+        for (int i = 1 ; i<11; i++){
+            data.add(Integer.toString(i));
+        }
+        ite = data.iterator();
+        
+        for (int i = 1; i<11; i++){
+            assertEquals(Integer.toString(i), ite.next());
+        }
+    }
 }

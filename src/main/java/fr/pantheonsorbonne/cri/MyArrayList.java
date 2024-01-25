@@ -11,7 +11,7 @@ public class MyArrayList implements Iterable<String>{
         this.data = new String[1];
         this.flag = 0;
     }
-
+    
     private void ensureCapacity(int n) {
         if (n <= data.length) {
             return;
