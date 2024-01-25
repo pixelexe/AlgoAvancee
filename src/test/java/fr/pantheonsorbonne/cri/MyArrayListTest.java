@@ -164,36 +164,6 @@ class MyArrayListTest
         
     }
 
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @Test 
     public void indexOfTest(){
         MyArrayList data = new MyArrayList();
