@@ -65,7 +65,8 @@ class MyArrayListTest
     @Test 
     void addWithIndex(){
         MyArrayList liste = new MyArrayList();
-        liste.add("null");
+        liste.add(0,"a");
+        
     }
 
     
