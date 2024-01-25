@@ -30,12 +30,15 @@ public class MyArrayList{
     }
 
     public void add(int index, String element){
-        for (int i = this.data.length; i>=index ; i--){
-            
+        this.ensureCapacity(flag+1);
+        for (int i = this.flag; i>index ; i--){
+            this.data[i] = this.data[i-1];
         }
+        this.data[index] = element;
+
     }
 
-    public String get(int i) {
+    public String get(int i) throws IndexOutOfBoundsException{
         if (i>=flag){
             throw new IndexOutOfBoundsException();
         }
@@ -45,7 +48,11 @@ public class MyArrayList{
     public String toString() {
         StringBuilder sb = new StringBuilder("[");
         for (int i = 0; i < this.flag; i++) {
-            sb.append(this.data[i] + ", ");
+            sb.append(this.data[i]);
+            if (i!= flag-1){
+                sb.append(", ");
+            }
+            
         }
         sb.append("]");
         return sb.toString();
@@ -93,9 +100,9 @@ public class MyArrayList{
         return flag;
     }
 
-    public Iterator<String> iterator(){
-        return new Iterator<String>(this.data);
-    }
+    // public Iterator<String> iterator(){
+    //     return new Iterator<String>(this.data);
+    // }
 
 
 
