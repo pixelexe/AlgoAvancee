@@ -12,9 +12,10 @@ class MyArrayListTest
 {
     /**
      * Rigorous Test :-)
+     * @throws MyOutOfBoundsException 
      */
     @Test
-    void shouldAnswerWithTrue() throws IndexOutOfBoundsException
+    void add_toString_get_Test() throws IndexOutOfBoundsException, MyOutOfBoundsException
     {
         MyArrayList liste = new MyArrayList();
         assertEquals("[]", liste.toString());
@@ -49,8 +50,15 @@ class MyArrayListTest
         assertEquals("d",liste.get(3));
         assertEquals("e",liste.get(4));
         assertEquals("f",liste.get(5));
-        assertThrows(IndexOutOfBoundsException.class,()->liste.get(6));
-        assertThrows(IndexOutOfBoundsException.class,()->liste.get(7));
+        assertThrows(MyOutOfBoundsException.class,()->liste.get(6));
+        assertThrows(MyOutOfBoundsException.class,()->liste.get(7));
+        assertThrows(MyOutOfBoundsException.class,()->liste.get(-1));
+        assertThrows(MyOutOfBoundsException.class,()->liste.get(8));
+    }
+
+    void addSpecificPosition()
+    {
+
     }
 
     
