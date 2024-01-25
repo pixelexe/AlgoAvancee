@@ -150,6 +150,23 @@ class MyArrayListTest
         }
     }
 
+    @Test
+    public void containsTest(){
+        MyArrayList liste = new MyArrayList();
+        liste.add("a");
+        liste.add("b");
+        liste.add("c");
+        liste.add("d");
+        assertEquals(true, liste.contains("a"));
+        assertEquals(false, liste.contains("a,b"));
+        assertEquals(false, liste.contains("e"));
+        assertEquals(false, liste.contains("-1"));
+        
+    }
+
+}
+
+
 
 
 
