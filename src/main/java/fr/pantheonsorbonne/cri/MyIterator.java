@@ -13,10 +13,7 @@ public class MyIterator implements Iterator<String>{
 
     @Override
     public boolean hasNext() {
-        if (this.pointeur < this.data.length && this.data[pointeur] != null){
-            return true;
-        }
-        return false;
+        return this.pointeur < this.data.length && this.data[pointeur] != null;
     }
 
     @Override
