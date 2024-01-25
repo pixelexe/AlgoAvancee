@@ -12,7 +12,7 @@ public class MyArrayList{
     }
 
     private void ensureCapacity(int n) {
-        if (n < data.length) {
+        if (n <= data.length) {
             return;
         } else {//
             String[] tab2 = new String[data.length * 2];
@@ -23,12 +23,22 @@ public class MyArrayList{
         }
     }
 
-    public void add(String s) {
+    public boolean add(String s) {
         ensureCapacity(this.flag + 1);
         this.data[this.flag++] = s;
+        return true;
+    }
+
+    public void add(int index, String element){
+        for (int i = this.data.length; i>=index ; i--){
+            
+        }
     }
 
     public String get(int i) {
+        if (i>=flag){
+            throw new IndexOutOfBoundsException();
+        }
         return data[i];
     }
 
@@ -64,8 +74,30 @@ public class MyArrayList{
     }
 
     public String remove(int index){
-        return "";
+        String retrieve = this.data[index];
+        for (int i = index ; i<this.data.length-1; i++){
+            this.data[i] = this.data[i+1];
+        }
+        this.flag--;
+        return retrieve;
     }
+
+
+    public String set(int placement, String element){
+        String retrieve = this.data[placement];
+        this.data[placement] = element;
+        return retrieve; 
+    }
+
+    public int size(){
+        return flag;
+    }
+
+    public Iterator<String> iterator(){
+        return new Iterator<String>(this.data);
+    }
+
+
 
     public static void main(String[] args) {
         MyArrayList liste = new MyArrayList();
