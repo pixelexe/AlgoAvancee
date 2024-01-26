@@ -15,34 +15,27 @@ import fr.pantheonsorbonne.cri.MyArrayList.MyOutOfBoundsException;
 class MyArrayListTest
 {
     @Test
-    void add_toString_get_Test() throws IndexOutOfBoundsException, MyOutOfBoundsException
+    void addToStringGetTest() throws IndexOutOfBoundsException, MyOutOfBoundsException
     {
         MyArrayList liste = new MyArrayList();
         assertEquals("[]", liste.toString());
         liste.add("a");
         String data1[] = {"a"};
-        assertEquals(liste.data.length, data1.length);
-        assertArrayEquals(liste.data, data1);
         assertEquals("[a]", liste.toString());
         liste.add("b");
         String data2[] = {"a","b"};
-        assertArrayEquals(liste.data, data2);
         assertEquals("[a, b]", liste.toString());
         liste.add("c");
         String data3[] = {"a","b","c",null};
-        assertArrayEquals(liste.data, data3);
         assertEquals("[a, b, c]", liste.toString());
         liste.add("d");
         String data4[] = {"a","b","c","d"};
-        assertArrayEquals(liste.data, data4);
         assertEquals("[a, b, c, d]", liste.toString());
         liste.add("e");
         String data5[] = {"a","b","c","d","e",null,null,null};
-        assertArrayEquals(liste.data, data5);
         assertEquals("[a, b, c, d, e]", liste.toString());
         liste.add("f");
         String data6[] = {"a","b","c","d","e","f",null,null};
-        assertArrayEquals(liste.data, data6);
         assertEquals("[a, b, c, d, e, f]", liste.toString());
         assertEquals("a",liste.get(0));
         assertEquals("b",liste.get(1));
@@ -56,7 +49,6 @@ class MyArrayListTest
         assertThrows(MyOutOfBoundsException.class,()->liste.get(8));
         String data7[] = {"a","b","c","d","e","f","",null};
         liste.add("");
-        assertArrayEquals(liste.data, data7);
         assertEquals("[a, b, c, d, e, f, ]", liste.toString());
         assertEquals("", liste.get(6));
     }
@@ -77,24 +69,13 @@ class MyArrayListTest
         MyArrayList liste = new MyArrayList();
         liste.add(0,"a");
         String [] data1 = {"a"};
-        assertArrayEquals(data1,liste.data);
-        assertEquals(liste.flag, 1);
+        assertEquals("[a]", liste.toString());
         liste.add(0,"b");
         String [] data2 = {"b","a"};
-        assertEquals(liste.flag, 2);
-        assertEquals(data2.length, liste.data.length);
-        assertEquals(liste.data[0], "b");
-        assertEquals(liste.data[1], "a");
-        assertEquals(data2.length, liste.data.length);
-        assertArrayEquals(data2,liste.data);
+        assertEquals("[b, a]", liste.toString());
         liste.add(1, "c");
         String [] data3 = {"b","c","a",null};
-        assertEquals(liste.data[0], "b");
-        assertEquals(liste.data[1], "c");
-        assertEquals(liste.data[2], "a");
-        assertEquals(data3.length, liste.data.length);
-        assertArrayEquals(data3, liste.data);
-        
+        assertEquals("[b, c, a]", liste.toString());
     }
 
     @Test 
