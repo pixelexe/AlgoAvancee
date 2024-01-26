@@ -1,6 +1,5 @@
 package fr.pantheonsorbonne.cri;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -20,22 +19,19 @@ class MyArrayListTest
         MyArrayList liste = new MyArrayList();
         assertEquals("[]", liste.toString());
         liste.add("a");
-        String data1[] = {"a"};
+        
         assertEquals("[a]", liste.toString());
         liste.add("b");
-        String data2[] = {"a","b"};
+        
         assertEquals("[a, b]", liste.toString());
         liste.add("c");
-        String data3[] = {"a","b","c",null};
+    
         assertEquals("[a, b, c]", liste.toString());
         liste.add("d");
-        String data4[] = {"a","b","c","d"};
         assertEquals("[a, b, c, d]", liste.toString());
         liste.add("e");
-        String data5[] = {"a","b","c","d","e",null,null,null};
         assertEquals("[a, b, c, d, e]", liste.toString());
         liste.add("f");
-        String data6[] = {"a","b","c","d","e","f",null,null};
         assertEquals("[a, b, c, d, e, f]", liste.toString());
         assertEquals("a",liste.get(0));
         assertEquals("b",liste.get(1));
@@ -47,7 +43,7 @@ class MyArrayListTest
         assertThrows(MyOutOfBoundsException.class,()->liste.get(7));
         assertThrows(MyOutOfBoundsException.class,()->liste.get(-1));
         assertThrows(MyOutOfBoundsException.class,()->liste.get(8));
-        String data7[] = {"a","b","c","d","e","f","",null};
+       
         liste.add("");
         assertEquals("[a, b, c, d, e, f, ]", liste.toString());
         assertEquals("", liste.get(6));
@@ -68,13 +64,13 @@ class MyArrayListTest
     void addWithIndex() throws MyOutOfBoundsException{
         MyArrayList liste = new MyArrayList();
         liste.add(0,"a");
-        String [] data1 = {"a"};
+     
         assertEquals("[a]", liste.toString());
         liste.add(0,"b");
-        String [] data2 = {"b","a"};
+       
         assertEquals("[b, a]", liste.toString());
         liste.add(1, "c");
-        String [] data3 = {"b","c","a",null};
+       
         assertEquals("[b, c, a]", liste.toString());
     }
 
