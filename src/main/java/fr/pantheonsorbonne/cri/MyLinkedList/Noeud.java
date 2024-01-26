@@ -25,4 +25,8 @@ public class Noeud {
     public void setNextNoeud(Noeud next){
         this.suivant = next;
     }
+
+    public String getData(){
+        return this.data;
+    }
 }

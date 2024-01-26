@@ -15,4 +15,17 @@ public class MyLinkedList {
         currentNoeud.setNextNoeud(new Noeud(newData));
         return true;
     }
+
+    public String toString(){
+        StringBuilder sb = new StringBuilder("[");
+        Noeud currentNoeud = firstNoeud;
+        while (currentNoeud.hasNextNoeud()){
+            sb.append(currentNoeud.getData());
+            sb.append(", ");
+            currentNoeud = currentNoeud.getNextNoeud();
+        }
+        sb.append(currentNoeud.getData());
+        sb.append("]");
+        return sb.toString();
+    }
 }
