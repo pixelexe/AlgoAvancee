@@ -12,7 +12,7 @@ public class MyArrayList implements Iterable<String>{
         this.flag = 0;
     }
 
-    private void ensureCapacity(int n) {
+    private void ensureCapacity(int n) { // O(n) Ou O(1)
         if (n <= data.length) {
             return;
         } 
@@ -25,13 +25,13 @@ public class MyArrayList implements Iterable<String>{
         }
     }
 
-    public boolean add(String s) {
+    public boolean add(String s) { //O(1) en général
         ensureCapacity(this.flag + 1);
         this.data[this.flag++] = s;
         return true;
     }
 
-    public void add(int index, String element) throws MyOutOfBoundsException{
+    public void add(int index, String element) throws MyOutOfBoundsException{  // O(1) en général
         if (flag != 0){
         if (index>=flag || index<0){
             throw new MyOutOfBoundsException();
@@ -46,14 +46,14 @@ public class MyArrayList implements Iterable<String>{
 
     }
 
-    public String get(int i) throws MyOutOfBoundsException{
+    public String get(int i) throws MyOutOfBoundsException{ //O(1)
         if (i>=flag || i<0){
             throw new MyOutOfBoundsException();
         }
         return data[i];
     }
 
-    public String toString() {
+    public String toString() { //O(n)
         StringBuilder sb = new StringBuilder("[");
         for (int i = 0; i < this.flag; i++) {
             sb.append(this.data[i]);
@@ -66,7 +66,7 @@ public class MyArrayList implements Iterable<String>{
         return sb.toString();
     }
 
-    public boolean contains(String value){
+    public boolean contains(String value){ //O(n)
         for (int i = 0; i<this.data.length ; i++){
             if (this.data[i].equals(value)){
                 return true;
@@ -75,7 +75,7 @@ public class MyArrayList implements Iterable<String>{
         return false;
     }
 
-    public int indexOf(String value){
+    public int indexOf(String value){ //O(n)
         for (int i = 0; i<this.flag ; i++){
             if (value.equals(this.data[i])){
                 return i;
@@ -84,11 +84,11 @@ public class MyArrayList implements Iterable<String>{
         return -1;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty(){ // 0(1)
         return (Arrays.equals(this.data, new String[1]));
     }
 
-    public String remove(int index) throws MyOutOfBoundsException{
+    public String remove(int index) throws MyOutOfBoundsException{ // O(n)
         if (index>=flag || index<0){
             throw new MyOutOfBoundsException();
         }
@@ -101,7 +101,7 @@ public class MyArrayList implements Iterable<String>{
     }
 
 
-    public String set(int placement, String element) throws MyOutOfBoundsException{
+    public String set(int placement, String element) throws MyOutOfBoundsException{ // O(1)
         if (placement>=flag || placement<0){
             throw new MyOutOfBoundsException();
         }
@@ -110,13 +110,12 @@ public class MyArrayList implements Iterable<String>{
         return retrieve; 
     }
 
-    public int size(){
+    public int size(){ // O(1)
         return flag;
     }
 
     @Override
-    public Iterator<String> iterator() {
+    public Iterator<String> iterator() { // O(1)
         return new MyIterator(this.data);
     }
 }
-
