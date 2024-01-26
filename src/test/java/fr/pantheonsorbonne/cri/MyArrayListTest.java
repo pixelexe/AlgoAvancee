@@ -9,6 +9,9 @@ import java.util.Iterator;
 
 import org.junit.jupiter.api.Test;
 
+import fr.pantheonsorbonne.cri.MyArrayList.MyArrayList;
+import fr.pantheonsorbonne.cri.MyArrayList.MyOutOfBoundsException;
+
 class MyArrayListTest
 {
     @Test

@@ -1,4 +1,4 @@
-package fr.pantheonsorbonne.cri;
+package fr.pantheonsorbonne.cri.MyArrayList;
 
 public class MyOutOfBoundsException extends Exception {
     

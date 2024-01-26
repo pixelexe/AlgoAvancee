@@ -1,11 +1,10 @@
-package fr.pantheonsorbonne.cri;
+package fr.pantheonsorbonne.cri.MyArrayList;
 
-import java.util.Arrays;
 import java.util.Iterator;
 
 public class MyArrayList implements Iterable<String>{
-    int flag;
-    String[] data;
+    private int flag;
+    private String[] data;
 
     public MyArrayList() {
         this.data = new String[1];
@@ -31,7 +30,7 @@ public class MyArrayList implements Iterable<String>{
         return true;
     }
 
-    public void add(int index, String element) throws MyOutOfBoundsException{  // O(1) en général
+    public void add(int index, String element) throws MyOutOfBoundsException{  // O(n)
         if (flag != 0){
         if (index>=flag || index<0){
             throw new MyOutOfBoundsException();
@@ -85,7 +84,7 @@ public class MyArrayList implements Iterable<String>{
     }
 
     public boolean isEmpty(){ // 0(1)
-        return (Arrays.equals(this.data, new String[1]));
+        return this.data[0] == null;
     }
 
     public String remove(int index) throws MyOutOfBoundsException{ // O(n)
