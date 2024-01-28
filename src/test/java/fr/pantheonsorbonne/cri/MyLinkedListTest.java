@@ -125,6 +125,75 @@ public class MyLinkedListTest {
 
     @Test 
     public void removeLastTest() throws MyEmptyListException{
+        MyLinkedList mll = new MyLinkedList();
+        assertThrows(MyEmptyListException.class, ()->mll.removeLast());
+        mll.add("1");
+        assertEquals("1", mll.removeLast());
+        assertEquals("[]", mll.toString());
+
+        mll.add("1");
+        mll.add("2");
+        assertEquals("2", mll.removeLast());
+        assertEquals("[1]", mll.toString());
+
+        mll.add("2");
+        mll.add("3");
+        mll.add("4");
+        assertEquals("4", mll.removeLast());
+        assertEquals("[1, 2, 3]", mll.toString());
+    }
+
+    @Test
+    public void removeWithIndexTest() throws MyOutOfBoundsException{
+        MyLinkedList mll = new MyLinkedList();
+        assertThrows(MyOutOfBoundsException.class, ()->mll.remove(0));
+        assertThrows(MyOutOfBoundsException.class, ()->mll.remove(1));
+        assertThrows(MyOutOfBoundsException.class, ()->mll.remove(-1));
+
+        mll.add("1");
+        assertEquals("[1]", mll.toString());
+        assertEquals("1", mll.remove(0));
+        assertEquals("[]", mll.toString());
+
+        mll.add("1");
+        mll.add("2");
+        mll.add("3");
+        assertEquals("2", mll.remove(1));
+        assertEquals("[1, 3]", mll.toString());
+        mll.clear();
+
+        mll.add("1");
+        mll.add("2");
+        mll.add("3");
+        assertEquals("3", mll.remove(2));
+        assertEquals("[1, 2]", mll.toString());
         
+    }
+
+    @Test
+    public void setWithIndexTest() throws MyOutOfBoundsException{
+        MyLinkedList mll = new MyLinkedList();
+        assertThrows(MyOutOfBoundsException.class, ()->mll.set(0,"1"));
+        assertThrows(MyOutOfBoundsException.class, ()->mll.set(1 ,"1"));
+        assertThrows(MyOutOfBoundsException.class, ()->mll.set(-1,"1"));
+
+        mll.add("1");
+        mll.add("2");
+        mll.add("3");
+        mll.add("4");
+        assertEquals("[1, 2, 3, 4]", mll.toString());
+        assertEquals("3", mll.set(2, "5"));
+        assertEquals("[1, 2, 5, 4]", mll.toString());
+
+        mll.clear();
+        mll.add("1");
+        mll.add("2");
+        assertEquals("[1, 2]", mll.toString());
+        assertEquals("1", mll.set(0, "5"));
+        assertEquals("[5, 2]", mll.toString());
+        assertEquals("2", mll.set(1, "5"));
+        assertEquals("[5, 5]", mll.toString());
+        
+
     }
 }

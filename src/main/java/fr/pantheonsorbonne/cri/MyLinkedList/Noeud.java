@@ -29,4 +29,8 @@ public class Noeud {
     public String getData(){
         return this.data;
     }
+    
+    public void setData(String newdata){
+        this.data = newdata;
+    }
 }
