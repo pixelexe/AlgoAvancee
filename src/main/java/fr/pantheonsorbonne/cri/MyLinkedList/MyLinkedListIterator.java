@@ -5,8 +5,8 @@ import java.util.Iterator;
 public class MyLinkedListIterator implements Iterator<Noeud>{
     private Noeud currentNoeud;
 
-    public MyLinkedListIterator(Noeud currentNoeud){
-        this.currentNoeud = currentNoeud;
+    public MyLinkedListIterator(Noeud Noeud){
+        this.currentNoeud = Noeud;
     }
 
     @Override
@@ -14,9 +14,10 @@ public class MyLinkedListIterator implements Iterator<Noeud>{
         return this.currentNoeud.hasNextNoeud();
     }
 
-    
+
     @Override
     public Noeud next() {
-        return this.currentNoeud.getNextNoeud();
+        currentNoeud = currentNoeud.getNextNoeud();
+        return currentNoeud;
     }
 }

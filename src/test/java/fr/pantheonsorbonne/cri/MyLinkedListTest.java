@@ -5,11 +5,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Iterator;
+
 import org.junit.jupiter.api.Test;
 
+import fr.pantheonsorbonne.cri.MyArrayList.MyArrayList;
 import fr.pantheonsorbonne.cri.MyArrayList.MyOutOfBoundsException;
 import fr.pantheonsorbonne.cri.MyLinkedList.MyEmptyListException;
 import fr.pantheonsorbonne.cri.MyLinkedList.MyLinkedList;
+import fr.pantheonsorbonne.cri.MyLinkedList.Noeud;
 
 public class MyLinkedListTest {
     @Test
@@ -195,5 +199,22 @@ public class MyLinkedListTest {
         assertEquals("[5, 5]", mll.toString());
         
 
+    }
+
+    @Test
+    public void MyLinkedListIteratorTest() throws MyOutOfBoundsException{
+        MyLinkedList data = new MyLinkedList("test");
+        Iterator<Noeud> ite = data.iterator();
+        assertFalse(ite.hasNext());
+
+        for (int i = 1 ; i<11; i++){
+            data.add(Integer.toString(i));
+        }
+        assertEquals("[test, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]", data.toString());
+
+        ite = data.iterator();
+        for (int i = 1; i<11; i++){
+            assertEquals(data.get(i), ite.next().getData());
+        }
     }
 }

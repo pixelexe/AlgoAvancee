@@ -1,8 +1,10 @@
 package fr.pantheonsorbonne.cri.MyLinkedList;
 
+import java.util.Iterator;
+
 import fr.pantheonsorbonne.cri.MyArrayList.MyOutOfBoundsException;
 
-public class MyLinkedList {
+public class MyLinkedList implements Iterable<Noeud>{
     private Noeud firstNoeud;
     private int tailleListe;
 
@@ -221,6 +223,11 @@ public class MyLinkedList {
 
     public int size() {
         return this.tailleListe;
+    }
+
+    @Override
+    public Iterator<Noeud> iterator() {
+        return new MyLinkedListIterator(this.firstNoeud);
     }
 
 }
