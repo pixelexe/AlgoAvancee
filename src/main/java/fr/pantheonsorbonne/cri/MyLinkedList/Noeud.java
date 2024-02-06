@@ -33,4 +33,12 @@ public class Noeud {
     public void setData(String newdata){
         this.data = newdata;
     }
+
+    public boolean addNoeud(String s){
+        if(!this.suivant.hasNextNoeud()){
+            this.suivant = new Noeud(s);
+            return true;
+        }
+        return this.suivant.addNoeud(s);
+    }
 }

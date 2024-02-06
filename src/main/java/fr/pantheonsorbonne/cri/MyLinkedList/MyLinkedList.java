@@ -230,4 +230,11 @@ public class MyLinkedList implements Iterable<Noeud>{
         return new MyLinkedListIterator(this.firstNoeud);
     }
 
+    public boolean addRecur(String s){
+        if (this.firstNoeud == null ){
+            this.firstNoeud = new Noeud(s);
+            return true;
+        }
+        return this.firstNoeud.addNoeud(s);
+    }
 }
