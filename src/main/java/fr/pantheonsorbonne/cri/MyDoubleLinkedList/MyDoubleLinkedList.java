@@ -147,7 +147,7 @@ public class MyDoubleLinkedList {
     }
 
     public void push(String s) {
-        add(s);
+        addLast(s);
     }
 
     public String remove() throws MyEmptyDoubleLinkedListExeption {
