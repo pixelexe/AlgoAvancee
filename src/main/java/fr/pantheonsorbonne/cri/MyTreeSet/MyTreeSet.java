@@ -40,12 +40,67 @@ public class MyTreeSet {
             }
             currNoeud = currNoeud.getSup();
             continue;
-        }
-
-        
+        }    
     }
 
+    public boolean contains(String s){
+        if (this.racine == null){
+            return false;
+        }
 
+        Noeud currNoeud = this.racine;
+        while (currNoeud != null){
+            if (s.equals(currNoeud.getData())){
+                return true;
+            }
+
+            if (s.compareTo(currNoeud.getData()) < 0){
+                currNoeud = currNoeud.getInf();
+                continue;
+            }
+
+            currNoeud = currNoeud.getSup();
+        }
+        return false;
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        int n = 2;
+        Noeud[] etage = new Noeud[] {this.racine};
+        while (true){
+            Noeud[] nextEtage = new Noeud[n];
+            int i = 0;
+            for (Noeud no : etage){
+                if (no == null){
+                    sb.append("Null ");
+
+                }
+                else {
+                    sb.append(no.getData() + " ");
+                }
+
+                try{
+                nextEtage[i] = no.getInf();
+                } catch (NullPointerException e){
+                    nextEtage[i] = null;
+                }
+
+                i++;
+                try{
+                nextEtage[i] = no.getSup();
+                } catch (NullPointerException e){
+                    nextEtage[i] = null;
+                }
+                i++;
+            }
+
+            sb.append("\n");
+            etage = nextEtage;
+            n*=2;
+        }
+    }
 
 
 
