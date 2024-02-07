@@ -69,6 +69,7 @@ public class MyTreeSet {
         StringBuilder sb = new StringBuilder();
         int n = 2;
         Noeud[] etage = new Noeud[] {this.racine};
+        boucle:
         while (true){
             Noeud[] nextEtage = new Noeud[n];
             int i = 0;
@@ -99,17 +100,24 @@ public class MyTreeSet {
             sb.append("\n");
             etage = nextEtage;
             n*=2;
+            for (Noeud a : etage){
+                if (a != null){
+                    continue boucle;
+                }
+            }
+            break;
         }
+        return sb.toString();
     }
 
-
-
-
-
-
-
-
-
+    public static void main(String[] args) {
+        MyTreeSet a = new MyTreeSet("j");
+        a.add("b");
+        a.add("o");
+        a.add("a");
+        a.add("z");
+        System.out.println( a.toString());
+    }
     private class Noeud{
         private String data;
         private Noeud inf;
@@ -119,9 +127,9 @@ public class MyTreeSet {
             this.data = s;
         }
 
-        public void setData(String s){
-            this.data = s;
-        }
+        // public void setData(String s){
+        //     this.data = s;
+        // }
 
         public String getData(){
             return this.data;
