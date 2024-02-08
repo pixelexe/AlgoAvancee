@@ -75,26 +75,21 @@ public class MyTreeSet {
             int i = 0;
             for (Noeud no : etage){
                 if (no == null){
-                    sb.append("Null ");
+                    sb.append("/ ");
 
                 }
                 else {
                     sb.append(no.getData() + " ");
                 }
 
-                try{
-                nextEtage[i] = no.getInf();
-                } catch (NullPointerException e){
-                    nextEtage[i] = null;
+                if (no == null){
+                    nextEtage[i++] = null;
+                    nextEtage[i++] = null;
+                    continue;
                 }
-
-                i++;
-                try{
-                nextEtage[i] = no.getSup();
-                } catch (NullPointerException e){
-                    nextEtage[i] = null;
-                }
-                i++;
+                
+                nextEtage[i++] = no.getInf();
+                nextEtage[i++] = no.getSup();
             }
 
             sb.append("\n");
