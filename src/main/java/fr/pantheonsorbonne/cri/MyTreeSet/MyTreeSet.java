@@ -105,14 +105,6 @@ public class MyTreeSet {
         return sb.toString();
     }
 
-    public static void main(String[] args) {
-        MyTreeSet a = new MyTreeSet("j");
-        a.add("b");
-        a.add("o");
-        a.add("a");
-        a.add("z");
-        System.out.println( a.toString());
-    }
     private class Noeud{
         private String data;
         private Noeud inf;
@@ -145,5 +137,6 @@ public class MyTreeSet {
         public Noeud getSup(){
             return this.sup;
         }
+
     }
 }
