@@ -36,10 +36,14 @@ public class MyTreeSetTest {
         assertEquals(true, tree.contains("te"));
         assertEquals(true, tree.contains("tes"));
         assertEquals(true, tree.contains(""));
+        assertEquals(false, tree.contains("null"));
     }
 
     @Test
     void toStringTest(){
-        TreeSet tree = new TreeSet<>();
+        MyTreeSet tree = new MyTreeSet("test");
+        tree.add("a");
+        tree.add("z");
+        assertEquals("test \na z \n", tree.toString());
     }
 }

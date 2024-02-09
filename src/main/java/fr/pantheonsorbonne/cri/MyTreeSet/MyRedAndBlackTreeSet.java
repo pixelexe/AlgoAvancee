@@ -22,6 +22,9 @@ public class MyRedAndBlackTreeSet {
             this.pere = pere;
         }
 
+        public void setRed(){
+            this.isBlack=false;
+        }
         // public void setData(String s){
         //     this.data = s;
         // }
@@ -70,10 +73,18 @@ public class MyRedAndBlackTreeSet {
             return this.pere == null;
         }
 
-        public Noeud getBrother(Noeud n){
+        public boolean isLeftSide(){
+            return this.data.compareTo(this.pere.data)<0;
+        }
+
+        public Noeud getBrother(Noeud n) throws MyTreeSetException{
             if (n.isTheRoot()){
-                throw new 
+                throw new MyTreeSetException();
             }
+            if(isLeftSide()){
+                return this.pere.getRight();
+            }
+            return this.pere.getLeft();
         }
     }
 
@@ -84,7 +95,7 @@ public class MyRedAndBlackTreeSet {
         this.racine = new Noeud(s);
     }
 
-    public void rotationGauche(Noeud r){
+    public void rotationGauche(Noeud r) throws MyTreeSetException{
         if(r.getLeft() == null || r == null){
             return ;
         }
@@ -92,7 +103,14 @@ public class MyRedAndBlackTreeSet {
         Noeud un = r.getBrother(r.getLeft());
         Noeud deux = r;
         Noeud pere = r.getPere();
-        
+        deux.setPere(un);
+        if (pere.getLeft().equals(r)){
+            pere.setLeft(un.getData(), pere);
+        }
+        else{
+            pere.setRight(un.getData(), pere);
+        }
+        un.setPere(pere);
     }
 
     public boolean add(String s){
