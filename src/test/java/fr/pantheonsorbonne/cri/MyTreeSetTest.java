@@ -1,9 +1,6 @@
 package fr.pantheonsorbonne.cri;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.Iterator;
-import java.util.TreeSet;
-
 import org.junit.jupiter.api.Test;
 
 import fr.pantheonsorbonne.cri.MyTreeSet.MyTreeSet;
