@@ -1,6 +1,5 @@
 package fr.pantheonsorbonne.cri.MyHashSet;
 
-import java.io.CharArrayReader;
 import java.util.LinkedList;
 import java.util.List;
 
