@@ -21,29 +21,37 @@ public class MyQueueArray {
             data = tab2;
         }
     }
-    private String poll() throws MyQueueEmptyException{ 
+    
+    public String poll() throws MyQueueEmptyException{ 
         if (flag == 0){
             throw new MyQueueEmptyException();
         }
-        String res = data[flag];
-        data[flag] = null;
-        flag--;
+        String res = data[--flag];
         return res;
     }
 
-    private void push(String s) throws MyQueueEmptyException{
-        if (flag == 0){
-            throw new MyQueueEmptyException();
-        }
+    public void push(String s) throws MyQueueEmptyException{
         ensureCapacity(flag + 1);
-        data[flag+1] = s;
+        data[flag] = s;
         flag++;
     }
 
-    private String peek() throws MyQueueEmptyException{
+    public String peek() throws MyQueueEmptyException{
         if (flag == 0){
             throw new MyQueueEmptyException();
         }
-        return data[flag];
+        return data[flag-1];
+    }
+    public String toString() { //O(n)
+        StringBuilder sb = new StringBuilder("[");
+        for (int i = 0; i < this.flag; i++) {
+            sb.append(this.data[i]);
+            if (i!= flag-1){
+                sb.append(", ");
+            }
+            
+        }
+        sb.append("]");
+        return sb.toString();
     }
 }
