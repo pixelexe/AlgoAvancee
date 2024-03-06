@@ -1,7 +1,10 @@
 package fr.pantheonsorbonne.cri;
 
 import fr.pantheonsorbonne.cri.MyQueueChain.MyQueueChain;
+import fr.pantheonsorbonne.cri.MyQueueChain.MyQueueIterator;
 import org.junit.jupiter.api.Test;
+
+import java.util.Iterator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -32,5 +35,17 @@ public class MyQueueChainTest {
         assertTrue(a.isEmpty());
     }
 
+    @Test
+    public void IteratorTest(){
+        MyQueueChain a = new MyQueueChain();
+        a.push("a");
+        a.push("b");
+        Iterator<String> c = a.iterator();
+        assertTrue(c.hasNext());
+        assertEquals(c.next(), "b");
+        assertTrue(c.hasNext());
+        assertEquals(c.next(), "a");
+        assertFalse(c.hasNext());
+    }
 
 }

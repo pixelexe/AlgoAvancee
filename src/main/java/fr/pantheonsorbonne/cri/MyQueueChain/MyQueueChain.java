@@ -1,8 +1,11 @@
 package fr.pantheonsorbonne.cri.MyQueueChain;
 
-public class MyQueueChain {
+import java.util.Iterator;
+
+public class MyQueueChain implements Iterable<String>{
 
     Couche currentTop;
+
     public static class Couche {
         private String data;
         private Couche under;
@@ -51,6 +54,11 @@ public class MyQueueChain {
         this.currentTop = extract.getUnder();
 
         return extract.getData();
+    }
+
+    @Override
+    public Iterator<String> iterator() {
+        return new MyQueueIterator(this.currentTop);
     }
 
 }
