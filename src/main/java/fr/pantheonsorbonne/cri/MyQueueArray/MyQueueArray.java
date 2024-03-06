@@ -1,0 +1,49 @@
+package fr.pantheonsorbonne.cri.MyQueueArray;
+
+public class MyQueueArray {
+    private int flag;
+    private String[] data;
+
+    public MyQueueArray() {
+        this.data = new String[1];
+        this.flag = 0;
+    }
+
+    private void ensureCapacity(int n) { 
+        if (n <= data.length) {
+            return;
+        } 
+        else {//
+            String[] tab2 = new String[data.length * 2];
+            for (int i = 0; i < data.length; i++) {
+                tab2[i] = data[i];
+            }
+            data = tab2;
+        }
+    }
+    private String poll() throws MyQueueEmptyException{ 
+        if (flag == 0){
+            throw new MyQueueEmptyException();
+        }
+        String res = data[flag];
+        data[flag] = null;
+        flag--;
+        return res;
+    }
+
+    private void push(String s) throws MyQueueEmptyException{
+        if (flag == 0){
+            throw new MyQueueEmptyException();
+        }
+        ensureCapacity(flag + 1);
+        data[flag+1] = s;
+        flag++;
+    }
+
+    private String peek() throws MyQueueEmptyException{
+        if (flag == 0){
+            throw new MyQueueEmptyException();
+        }
+        return data[flag];
+    }
+}

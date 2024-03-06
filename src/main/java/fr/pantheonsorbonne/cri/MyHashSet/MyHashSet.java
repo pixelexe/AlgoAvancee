@@ -6,10 +6,11 @@ import java.util.List;
 public class MyHashSet {
 
     
-    private List<Couple> [] data;
-    private int size = 0;
-    private static final double T = 0.7;
+    private List<Couple>[] data;            //Array de Lists
+    private int size = 0;                   //Nombre d'objets dans l'array
+    private static final double T = 0.7;    //Taux de remplissage max    
 
+    @SuppressWarnings("unchecked")
     public MyHashSet(){
         this.data = new LinkedList[10];
         for (int i = 0; i < data.length; i++){
@@ -25,9 +26,15 @@ public class MyHashSet {
         private int hash;
         private String value;
 
-        private boolean equals(Couple c){
-            return this.value.equals(c.getValue());
-        }
+        @Override
+        public boolean equals(Object obj) {
+            if (obj == null || obj.getClass() != Couple.class){
+                return false;
+            }
+
+            return this.value.equals(((Couple) obj).getValue());
+        };
+        
 
         public Couple(int hash, String value){
             this.hash = hash;
@@ -42,27 +49,33 @@ public class MyHashSet {
             return this.value;
         }
 
-        public void setValue(String value){
-            this.value = value;
-        }
+        // public void setValue(String value){
+        //     this.value = value;
+        // }
 
-        public void setHash(int hash){
-            this.hash = hash;
-        }
+        // public void setHash(int hash){
+        //     this.hash = hash;
+        // }
     }
 
     //Méthodes
+    @SuppressWarnings("unchecked")
     private void grow(){
-        if (size / data.length > T){
+        if (size / this.data.length > T){
+            //Création de l'array plus grand
             List<Couple>[] tab = new LinkedList[data.length * 2];
-            for (int i = 0; i < data.length; i++){
-                
-                for(int j = 0; j < data[i].size(); j++){
-                    int hash = data[i].get(j).getHash();
-                    int index = hash % tab.length;
-                    tab[index].add(data[i].get(j));
+            //Insertion des LinkedList vides
+            for(int i = 0; i < tab.length; i++){
+                tab[i] = new LinkedList<>();
+            }
+            //Replaçage des valeurs de l'ancien Array dans le nouveau
+            for (List<Couple> a : this.data){
+                for (Couple c : a){
+                    int index = c.getHash() % tab.length;
+                    tab[index].add(c);
                 }
             }
+            //Ecrasement de l'ancien Array
             this.data = tab;
         }
     }
@@ -71,50 +84,61 @@ public class MyHashSet {
         int hash = s.hashCode();
         Couple couple = new Couple(hash, s);
         int index = hash % data.length;
-        if (this.data[index].size() == 0){
-            this.data[index].add(couple);
-            this.size ++;
-            grow();
-            return true;
-        }
         if (this.data[index].contains(couple)){
             return false;
         }
-
         this.data[index].add(couple);
         this.size ++ ;
         grow();
         return true;
     }
 
-    private boolean contains(String s){
+    public boolean contains(String s){
         
-        int hash = s.hashCode();
-        int index = hash % data.length;
-        if (data[index].size() != 0){
-            for (int i = 0; i < data[index].size(); i++){
-                if (data[index].get(i).getHash() == hash){
-                    return true;
-                }
-            }
-        }
-        return false;
+        return (data[s.hashCode() % data.length].contains(new Couple(0, s)));
+        // [Bon emplacement dans le tableau] contient un couple dont la Value est s ?
     }
 
     public String toString(){
         StringBuilder stringB = new StringBuilder();
         
         for (List<Couple> list : data) {
-            if (list != null){
             for (Couple c : list){
                 stringB.append(c.getValue());
-                stringB.append("     |");
+                stringB.append("|");
             }
-        }
-        stringB.append("\n");
+        
+        stringB.append("&");
     }
 
         return stringB.toString();
+    }
+
+    public static void main(String... args) {
+        MyHashSet a = new MyHashSet();
+        long deb = System.currentTimeMillis();
+        for (int i = 97; i<117 ; i++){
+            a.add(Character.toString(i));
+        }
+        for (int i = 97; i<117 ; i++){
+            a.add("a"+Character.toString(i));
+        }
+        for (int i = 97; i<107; i++){
+            a.add("b"+Character.toString(i));
+        }
+        long end = System.currentTimeMillis();
+        long timeExecAdd = end-deb;
+        System.out.println("Add :" + timeExecAdd);
+
+        long debut = System.currentTimeMillis();
+        a.contains("s");
+        
+        long fin = System.currentTimeMillis();
+        long time = fin-debut;
+
+        System.out.println("Search:" + time);
+
+        
     }
 
 
