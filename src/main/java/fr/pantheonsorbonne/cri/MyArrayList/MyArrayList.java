@@ -1,6 +1,9 @@
 package fr.pantheonsorbonne.cri.MyArrayList;
 
 import java.util.Iterator;
+import java.util.Random;
+
+import fr.pantheonsorbonne.cri.MyTreeSet.MyTreeSet;
 
 public class MyArrayList implements Iterable<String>{
     private int flag;
@@ -66,7 +69,7 @@ public class MyArrayList implements Iterable<String>{
     }
 
     public boolean contains(String value){ //O(n)
-        for (int i = 0; i<this.data.length ; i++){
+        for (int i = 0; i<this.flag ; i++){
             if (this.data[i].equals(value)){
                 return true;
             }
@@ -116,5 +119,47 @@ public class MyArrayList implements Iterable<String>{
     @Override
     public Iterator<String> iterator() { // O(1)
         return new MyIterator(this.data);
+    }
+
+
+    public static void main(String[] args) throws MyOutOfBoundsException {
+        
+        for (int i = 1; i <= 10; i++) {
+
+            Random rand = new Random();
+            MyArrayList list = new MyArrayList();
+            long debut = System.currentTimeMillis();
+
+            for (int j = 0; j < 1000000*i; j++) {
+                list.add(i+"");
+            }
+            long fin = (System.currentTimeMillis() - debut)/10;
+            System.out.println("Temps d'execution pour "+ 100000*+i+" elements : "+fin+"ms");
+
+            debut = System.currentTimeMillis();
+            for (int j = 0; j < 100*i; j++) {
+                list.contains(rand.nextInt(100000*i)+"");
+            }
+            fin = (System.currentTimeMillis() - debut )/100;
+            System.out.println("Temps d'execution pour 1 contains en moyenne : "+fin+"ms");
+            
+        }
+        
+        // System.out.println("--------------------------------------------------");
+
+        // for (int i = 1; i <= 10; i++) {
+        //     Random rand = new Random();
+        //     MyTreeSet list = new MyTreeSet();
+        //     for (int j = 0; j < 100000*i; j++) {
+        //         list.add(i+"");
+        //     }
+
+        //     for (int j = 0; j < 100000*i; j++) {
+        //         list.contains(rand.nextInt(100000*i)+"");
+        //     }
+            
+        // }
+
+
     }
 }

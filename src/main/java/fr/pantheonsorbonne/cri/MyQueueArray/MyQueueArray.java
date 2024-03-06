@@ -1,6 +1,10 @@
 package fr.pantheonsorbonne.cri.MyQueueArray;
 
-public class MyQueueArray {
+import java.util.Iterator;
+
+import fr.pantheonsorbonne.cri.MyArrayList.MyIterator;
+
+public class MyQueueArray implements Iterable<String>{
     private int flag;
     private String[] data;
 
@@ -53,5 +57,10 @@ public class MyQueueArray {
         }
         sb.append("]");
         return sb.toString();
+    }
+
+    @Override
+    public Iterator<String> iterator() {
+        return new MyQueueIterator(this.data);
     }
 }
