@@ -46,6 +46,11 @@ public class MyQueueArray implements Iterable<String>{
         }
         return data[flag-1];
     }
+
+    public boolean isEmpty(){
+        return flag == 0;
+    }
+
     public String toString() { //O(n)
         StringBuilder sb = new StringBuilder("[");
         for (int i = 0; i < this.flag; i++) {
