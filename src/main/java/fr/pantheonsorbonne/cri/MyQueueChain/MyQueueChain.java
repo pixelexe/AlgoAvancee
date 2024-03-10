@@ -36,13 +36,7 @@ public class MyQueueChain implements Iterable<String>{
     }
 
     public void push(String ajout){
-        Couche coucheAjout = new Couche(ajout, null);
-        if (this.isEmpty()){
-            currentTop = coucheAjout;
-            return;
-        }
-        coucheAjout.setUnder(this.currentTop);
-        currentTop = coucheAjout;
+        this.currentTop = new Couche(ajout, this.currentTop);
     }
 
     public String peek(){

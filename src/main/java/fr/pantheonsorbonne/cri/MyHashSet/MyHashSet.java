@@ -1,7 +1,13 @@
 package fr.pantheonsorbonne.cri.MyHashSet;
 
+import fr.pantheonsorbonne.cri.MyArrayList.MyOutOfBoundsException;
+import fr.pantheonsorbonne.cri.MyTreeSet.MyRedAndBlackTreeSet;
+import fr.pantheonsorbonne.cri.MyTreeSet.MyTreeSetException;
+
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 public class MyHashSet {
 
@@ -114,32 +120,27 @@ public class MyHashSet {
         return stringB.toString();
     }
 
-    public static void main(String... args) {
-        MyHashSet a = new MyHashSet();
-        long deb = System.currentTimeMillis();
-        for (int i = 97; i<117 ; i++){
-            a.add(Character.toString(i));
-        }
-        for (int i = 97; i<117 ; i++){
-            a.add("a"+Character.toString(i));
-        }
-        for (int i = 97; i<107; i++){
-            a.add("b"+Character.toString(i));
-        }
-        long end = System.currentTimeMillis();
-        long timeExecAdd = end-deb;
-        System.out.println("Add :" + timeExecAdd);
+    public static void main(String[] args) throws MyOutOfBoundsException, MyTreeSetException {
 
-        long debut = System.currentTimeMillis();
-        a.contains("s");
-        
-        long fin = System.currentTimeMillis();
-        long time = fin-debut;
+        for (int i = 1; i <= 10; i++) {
 
-        System.out.println("Search:" + time);
+            Random rand = new Random();
+            MyHashSet list = new MyHashSet();
+            long debut = System.currentTimeMillis();
 
-        
+            for (int j = 0; j < 100000*i; j++) {
+                list.add(rand.nextInt(1000000)+"");
+            }
+            long fin = (System.currentTimeMillis() - debut);
+            System.out.println("Temps d'execution pour "+ 100000*+i+" elements : "+fin+"ms");
+
+            debut = System.currentTimeMillis();
+            for (int j = 0; j < 100*i; j++) {
+                list.contains(rand.nextInt(100000*i)+"");
+            }
+            fin = (System.currentTimeMillis() - debut )/100;
+            System.out.println("Temps d'execution pour 1 contains en moyenne : "+fin+"ms");
+
+        }
     }
-
-
 }

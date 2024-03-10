@@ -1,5 +1,11 @@
 package fr.pantheonsorbonne.cri.MyTreeSet;
 
+import fr.pantheonsorbonne.cri.MyArrayList.MyOutOfBoundsException;
+
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.TreeSet;
+
 public class MyRedAndBlackTreeSet {
 
     private Noeud racine;
@@ -334,41 +340,48 @@ public class MyRedAndBlackTreeSet {
         return sb.toString();
     }
 
+    public boolean contains(String s){
+        if (this.racine == null){
+            return false;
+        }
 
-    public static void main(String[] args) throws MyTreeSetException {
-        MyRedAndBlackTreeSet a = new MyRedAndBlackTreeSet();
-        a.add("Aa");
-        System.out.println(a.toString());
-        a.add("Ab");
-        System.out.println(a.toString());
-        a.add("Ac");
-        System.out.println(a.toString());
-        a.add("Ad");
-        System.out.println(a.toString());
-        a.add("Ae");
-        a.add("Af");
-        a.add("Ag");
-        a.add("Ah");
-        a.add("Ai");
-        a.add("Aj");
-        a.add("Ak");
-        a.add("Al");
-        a.add("Am");
-        a.add("An");
-        a.add("Ao");
-        a.add("Ap");
-        a.add("Aq");
-        a.add("Ar");
-        a.add("A");
-        a.add("1");
-        //a.add("Age");
-        //System.out.println(a.toString());
-        //a.add("Agee");
-        //a.add("Aga");
-        //a.add("Ai1");
-        System.out.println(a.toString());
-        
+        Noeud currNoeud = this.racine;
+        while (currNoeud != null){
+            if (s.equals(currNoeud.getData())){
+                return true;
+            }
+
+            if (s.compareTo(currNoeud.getData()) < 0){
+                currNoeud = currNoeud.getLeft();
+                continue;
+            }
+
+            currNoeud = currNoeud.getRight();
+        }
+        return false;
     }
 
-}
+    public static void main(String[] args) throws MyOutOfBoundsException, MyTreeSetException {
+
+        for (int i = 1; i <= 10; i++) {
+
+            Random rand = new Random();
+            MyRedAndBlackTreeSet list = new MyRedAndBlackTreeSet();
+            long debut = System.currentTimeMillis();
+
+            for (int j = 0; j < 100000*i; j++) {
+                list.add(rand.nextInt(1000000)+"");
+            }
+            long fin = (System.currentTimeMillis() - debut);
+            System.out.println("Temps d'execution pour "+ 100000*+i+" elements : "+fin+"ms");
+
+            debut = System.currentTimeMillis();
+            for (int j = 0; j < 100*i; j++) {
+                list.contains(rand.nextInt(100000*i)+"");
+            }
+            fin = (System.currentTimeMillis() - debut )/100;
+            System.out.println("Temps d'execution pour 1 contains en moyenne : "+fin+"ms");
+
+        }
+}}
 

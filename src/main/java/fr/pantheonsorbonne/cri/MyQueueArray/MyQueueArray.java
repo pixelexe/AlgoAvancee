@@ -17,7 +17,7 @@ public class MyQueueArray implements Iterable<String>{
         if (n <= data.length) {
             return;
         } 
-        else {//
+        else {
             String[] tab2 = new String[data.length * 2];
             for (int i = 0; i < data.length; i++) {
                 tab2[i] = data[i];
@@ -64,6 +64,6 @@ public class MyQueueArray implements Iterable<String>{
 
     @Override
     public Iterator<String> iterator() {
-        return new MyQueueIterator(this.data);
+        return new MyQueueIterator(this.data, this.flag);
     }
 }
