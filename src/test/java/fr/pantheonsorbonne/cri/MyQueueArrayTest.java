@@ -20,5 +20,7 @@ public class MyQueueArrayTest {
         assertEquals(queue.poll(), "test3");
         assertEquals(queue.peek(), "test2");
         assertEquals(queue.toString(), "[test, test2]");
+        queue.push("test4");
+        assertEquals(queue.toString(), "[test, test2, test4]");
     }
 }

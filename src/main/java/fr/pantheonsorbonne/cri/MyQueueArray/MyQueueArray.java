@@ -30,14 +30,12 @@ public class MyQueueArray implements Iterable<String>{
         if (flag == 0){
             throw new MyQueueEmptyException();
         }
-        String res = data[--flag];
-        return res;
+        return data[--flag];
     }
 
     public void push(String s) throws MyQueueEmptyException{
         ensureCapacity(flag + 1);
-        data[flag] = s;
-        flag++;
+        data[flag++] = s;
     }
 
     public String peek() throws MyQueueEmptyException{
