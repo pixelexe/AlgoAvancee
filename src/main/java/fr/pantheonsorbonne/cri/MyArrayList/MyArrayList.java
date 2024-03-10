@@ -1,9 +1,12 @@
 package fr.pantheonsorbonne.cri.MyArrayList;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
+import fr.pantheonsorbonne.cri.MyTreeSet.MyRedAndBlackTreeSet;
 import fr.pantheonsorbonne.cri.MyTreeSet.MyTreeSet;
+import fr.pantheonsorbonne.cri.MyTreeSet.MyTreeSetException;
 
 public class MyArrayList implements Iterable<String>{
     private int flag;
@@ -121,29 +124,6 @@ public class MyArrayList implements Iterable<String>{
         return new MyIterator(this.data);
     }
 
-
-    public static void main(String[] args) throws MyOutOfBoundsException {
-        
-        for (int i = 1; i <= 10; i++) {
-
-            Random rand = new Random();
-            MyArrayList list = new MyArrayList();
-            long debut = System.currentTimeMillis();
-
-            for (int j = 0; j < 1000000*i; j++) {
-                list.add(i+"");
-            }
-            long fin = (System.currentTimeMillis() - debut)/10;
-            System.out.println("Temps d'execution pour "+ 100000*+i+" elements : "+fin+"ms");
-
-            debut = System.currentTimeMillis();
-            for (int j = 0; j < 100*i; j++) {
-                list.contains(rand.nextInt(100000*i)+"");
-            }
-            fin = (System.currentTimeMillis() - debut )/100;
-            System.out.println("Temps d'execution pour 1 contains en moyenne : "+fin+"ms");
-            
-        }
         
         // System.out.println("--------------------------------------------------");
 
@@ -159,7 +139,27 @@ public class MyArrayList implements Iterable<String>{
         //     }
             
         // }
+        public static void main(String[] args) throws MyOutOfBoundsException, MyTreeSetException {
 
+            for (int i = 1; i <= 10; i++) {
 
-    }
+                Random rand = new Random();
+                MyArrayList list = new MyArrayList();
+                long debut = System.currentTimeMillis();
+
+                for (int j = 0; j < 100000*i; j++) {
+                    list.add(rand.nextInt(1000000)+"");
+                }
+                long fin = (System.currentTimeMillis() - debut);
+                System.out.println("Temps d'execution pour "+ 100000*+i+" elements : "+fin+"ms");
+
+                debut = System.currentTimeMillis();
+                for (int j = 0; j < 100*i; j++) {
+                    list.contains(rand.nextInt(100000*i)+"");
+                }
+                fin = (System.currentTimeMillis() - debut )/100;
+                System.out.println("Temps d'execution pour 1 contains en moyenne : "+fin+"ms");
+
+            }
+        }
 }

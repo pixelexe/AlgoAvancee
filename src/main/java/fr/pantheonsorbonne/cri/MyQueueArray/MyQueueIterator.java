@@ -5,19 +5,20 @@ import java.util.Iterator;
 public class MyQueueIterator implements Iterator<String> {
 
     private String[] data;
-    private int pointeur = 0;
+    private int pointeur;
 
-    public MyQueueIterator (String[] datas){
+    public MyQueueIterator (String[] datas, int flag){
         this.data = datas;
+        this.pointeur = flag;
     }
 
     @Override
     public boolean hasNext() {
-        return this.pointeur < this.data.length && this.data[pointeur] != null;
+        return this.pointeur > 0;
     }
 
     @Override
     public String next() {
-        return this.data[this.pointeur++];
+        return this.data[--this.pointeur];
     }
 }
